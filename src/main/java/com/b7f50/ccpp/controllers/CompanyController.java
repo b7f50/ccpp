@@ -1,5 +1,7 @@
-package com.b7f50.ccpp;
+package com.b7f50.ccpp.controllers;
 
+import com.b7f50.ccpp.services.CompanyService;
+import com.b7f50.ccpp.dtos.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

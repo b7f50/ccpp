@@ -1,5 +1,6 @@
-package com.b7f50.ccpp;
+package com.b7f50.ccpp.services;
 
+import com.b7f50.ccpp.dtos.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

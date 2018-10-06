@@ -1,4 +1,4 @@
-package com.b7f50.ccpp;
+package com.b7f50.ccpp.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
