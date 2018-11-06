@@ -1,0 +1,24 @@
+<form class="example-form">
+  <mat-card>{{company.id}}</mat-card>
+
+  <mat-form-field>
+    <input matInput name="company.name" type="text" placeholder="Name"  [(ngModel)]="company.name" required >
+    <mat-error>This field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker3" placeholder="Value binding" [value]="company.expirationDate">
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="company.usersLimit" type="number" placeholder="Users Limit"  [(ngModel)]="company.usersLimit" required >
+    <mat-error>This field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="company.quota" type="number" placeholder="Quota"  [(ngModel)]="company.quota" required >
+    <mat-error>This field is required</mat-error>
+  </mat-form-field>
+</form>
