@@ -17,11 +17,36 @@ public class CompanyService {
         return jdbcTemplate.queryForObject("SELECT count(1) FROM company", Long.class);
     }
 
-    public List<Company> find(String name) {
+    public List<Company> findAll() {
+
+        String sql = "SELECT C.ID, C.NAME, CPP.EXPIRATION_DATE, CPP.IDENTITY_LIMIT, CPP.QUOTA_LIMIT " +
+                "FROM COMPANY C " +
+                "JOIN  COMPANY_PAYMENT_PACKAGE CPP ON C.COMPANY_PAYMENT_PACKAGE  = CPP.ID";
+
         return jdbcTemplate.query(
-                "SELECT id, name FROM company WHERE name like ?",
-                new Object[]{name + "%"},
-                (rs, rowNum) -> new Company(rs.getLong("id"), rs.getString("name"))
+                sql,
+                (rs, rowNum) -> new Company(rs.getLong("ID"),
+                        rs.getString("NAME"),
+                        rs.getString("EXPIRATION_DATE"),
+                        rs.getLong("IDENTITY_LIMIT"),
+                        rs.getLong("QUOTA_LIMIT"))
+        );
+    }
+
+    public Company get(String id) {
+        String sql = "SELECT C.ID , C.NAME , CPP.EXPIRATION_DATE , CPP.IDENTITY_LIMIT , CPP.QUOTA_LIMIT \n" +
+                "FROM COMPANY  C\n" +
+                "JOIN  COMPANY_PAYMENT_PACKAGE CPP ON C.COMPANY_PAYMENT_PACKAGE = CPP.ID\n" +
+                "WHERE C.ID = ?";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                new Object[]{id},
+                (rs, rowNum) -> new Company(rs.getLong("ID"),
+                        rs.getString("NAME"),
+                        rs.getString("EXPIRATION_DATE"),
+                        rs.getLong("IDENTITY_LIMIT"),
+                        rs.getLong("QUOTA_LIMIT"))
         );
     }
 }

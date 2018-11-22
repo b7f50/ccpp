@@ -8,4 +8,7 @@ import lombok.Data;
 public class Company {
     private long id;
     private String name;
+    private String expirationDate;
+    private long usersLimit;
+    private long quota;
 }
