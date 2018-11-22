@@ -1,24 +1,38 @@
-<form class="example-form">
-  <mat-card>{{company.id}}</mat-card>
-
-  <mat-form-field>
-    <input matInput name="company.name" type="text" placeholder="Name"  [(ngModel)]="company.name" required >
-    <mat-error>This field is required</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker3" placeholder="Value binding" [value]="company.expirationDate">
-    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-    <mat-datepicker #picker3></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput name="company.usersLimit" type="number" placeholder="Users Limit"  [(ngModel)]="company.usersLimit" required >
-    <mat-error>This field is required</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput name="company.quota" type="number" placeholder="Quota"  [(ngModel)]="company.quota" required >
-    <mat-error>This field is required</mat-error>
-  </mat-form-field>
+<form (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Edit Company Payment Package details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <label>{{company.name}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput name="company.expirationDate" [matDatepicker]="expirationDatePicker" placeholder="Expiration date" [(ngModel)]="company.expirationDate" required>
+            <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #expirationDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput name="company.usersLimit" type="number" placeholder="Users Limit"  [(ngModel)]="company.usersLimit" required >
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput name="company.quota" type="number" placeholder="Quota"  [(ngModel)]="company.quota" required >
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
 </form>

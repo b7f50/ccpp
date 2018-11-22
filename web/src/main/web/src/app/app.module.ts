@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { CompanyComponent } from './company/company.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatCardModule, MatDatepickerModule, MatNativeDateModule } from "@angular/material";
+import { MatToolbarModule, MatInputModule, MatCardModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatSelectModule, MatRadioModule } from "@angular/material";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CompanyComponent } from './company/company.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
     MatInputModule,
     MatCardModule,
+    MatToolbarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

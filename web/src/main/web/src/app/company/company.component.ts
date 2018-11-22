@@ -20,4 +20,8 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onSubmit() {
+    alert('Thanks! ' +  this.company.usersLimit);
+  }
 }
