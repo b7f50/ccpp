@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class CompanyController {
@@ -15,8 +16,8 @@ public class CompanyController {
     CompanyService companyService;
 
     @GetMapping("/companies")
-    public List<Company> list() {
-        return companyService.findAll();
+    public List<Company> list(@RequestParam Integer pageSize, @RequestParam Integer pageNumber) {
+        return companyService.find(pageSize, pageNumber);
     }
 
     @GetMapping("/companies/{id}")

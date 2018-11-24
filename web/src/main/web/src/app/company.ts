@@ -1,7 +1,7 @@
 export class Company {
   id: number;
   name: string;
-  expirationDate: any;
+  expirationDate: string;
   usersLimit: number;
   quota: number;
 }

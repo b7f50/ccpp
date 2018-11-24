@@ -9,15 +9,15 @@ import {
   MatSelectModule,
 } from '@angular/material';
 
-import { CompanyComponent } from './company.component';
+import { CompanyDetailComponent } from './company.component';
 
 describe('CompanyComponent', () => {
-  let component: CompanyComponent;
-  let fixture: ComponentFixture<CompanyComponent>;
+  let component: CompanyDetailComponent;
+  let fixture: ComponentFixture<CompanyDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompanyComponent ],
+      declarations: [ CompanyDetailComponent ],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -31,7 +31,7 @@ describe('CompanyComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompanyComponent);
+    fixture = TestBed.createComponent(CompanyDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
