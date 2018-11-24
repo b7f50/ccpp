@@ -13,12 +13,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { RouterModule, Routes } from '@angular/router';
 import { CompanyListComponent } from './company-list/company-list.component';
+import { CompanyDetailComponent } from './company-detail/company-detail.component';
 
 
 const appRoutes: Routes = [
   {
-    path: 'companies/:id',
+    path: 'company-edit/:id',
     component: CompanyEditComponent,
+    data: { title: 'Company Edit' }
+  },
+  {
+    path: 'company-detail/:id',
+    component: CompanyDetailComponent,
     data: { title: 'Company Detail' }
   },
   {
@@ -36,7 +42,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CompanyEditComponent,
-    CompanyListComponent
+    CompanyListComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserModule,

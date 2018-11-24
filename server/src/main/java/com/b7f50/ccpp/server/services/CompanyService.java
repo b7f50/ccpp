@@ -17,23 +17,30 @@ public class CompanyService {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+    //2049-02-19T23:00:00.000Z
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public Company save(Company company) {
+        log.warn(company.getExpirationDate());
+        LocalDateTime localDateTime = LocalDateTime.parse(company.getExpirationDate(), format);
+        log.warn(localDateTime.toString());
 
-    public List<Company> findAll() {
+        Company old = this.get(String.valueOf(company.getId()));
+        log.warn("following update will be performed: \n" +
+                "old company: " + old.toString() + "\n" +
+                "new company: " + company.toString());
 
-        String sql = "SELECT C.ID, C.NAME, CPP.EXPIRATION_DATE, CPP.IDENTITY_LIMIT, CPP.QUOTA_LIMIT " +
-                "FROM COMPANY C " +
-                "JOIN  COMPANY_PAYMENT_PACKAGE CPP ON C.COMPANY_PAYMENT_PACKAGE  = CPP.ID";
+        String sql = "UPDATE COMPANY_PAYMENT_PACKAGE CPP SET CPP.EXPIRATION_DATE = ?, CPP.IDENTITY_LIMIT = ?, CPP.QUOTA_LIMIT = ? " +
+                "WHERE CPP.ID = (SELECT COMPANY_PAYMENT_PACKAGE FROM COMPANY WHERE ID = ?)";
 
-        return jdbcTemplate.query(
-                sql,
-                (rs, rowNum) -> new Company(rs.getLong("ID"),
-                        rs.getString("NAME"),
-                        format.format(rs.getObject("EXPIRATION_DATE", LocalDateTime.class)),
-                        rs.getLong("IDENTITY_LIMIT"),
-                        rs.getLong("QUOTA_LIMIT"))
-        );
+        jdbcTemplate.update(sql, new Object[]{company.getExpirationDate(), company.getUsersLimit(), company.getQuota(), company.getId()});
+
+        Company updated = this.get(String.valueOf(company.getId()));
+
+        log.warn("result company: \n" +
+                "updated company: " + updated.toString());
+
+        return updated;
     }
 
     public List<Company> find(Integer pageSize, Integer pageNumber) {
@@ -41,8 +48,8 @@ public class CompanyService {
         log.warn("pageSize :" + pageSize + ", pageNumber: " + pageNumber);
 
         String sql = "SELECT C.ID, C.NAME, CPP.EXPIRATION_DATE, CPP.IDENTITY_LIMIT, CPP.QUOTA_LIMIT " +
-                "FROM COMPANY C " +
-                "JOIN  COMPANY_PAYMENT_PACKAGE CPP ON C.COMPANY_PAYMENT_PACKAGE  = CPP.ID";
+                "FROM COMPANY AS C " +
+                "INNER JOIN  COMPANY_PAYMENT_PACKAGE AS CPP ON C.COMPANY_PAYMENT_PACKAGE  = CPP.ID";
 
         return jdbcTemplate.query(
                 sql,
@@ -57,9 +64,9 @@ public class CompanyService {
 
 
     public Company get(String id) {
-        String sql = "SELECT C.ID , C.NAME , CPP.EXPIRATION_DATE , CPP.IDENTITY_LIMIT , CPP.QUOTA_LIMIT \n" +
-                "FROM COMPANY  C\n" +
-                "JOIN  COMPANY_PAYMENT_PACKAGE CPP ON C.COMPANY_PAYMENT_PACKAGE = CPP.ID\n" +
+        String sql = "SELECT C.ID , C.NAME , CPP.EXPIRATION_DATE , CPP.IDENTITY_LIMIT , CPP.QUOTA_LIMIT " +
+                "FROM COMPANY AS C " +
+                "INNER JOIN COMPANY_PAYMENT_PACKAGE AS CPP ON C.COMPANY_PAYMENT_PACKAGE = CPP.ID " +
                 "WHERE C.ID = ?";
 
         return jdbcTemplate.queryForObject(

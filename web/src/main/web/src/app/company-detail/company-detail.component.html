@@ -1,0 +1,26 @@
+<mat-card class="company-card">
+  <mat-card-header>
+    <mat-card-title>Company Payment Package Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <label>{{company.name}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>{{company.expirationDate}}</label>
+      </div>
+      <div class="col">
+        <label>{{company.usersLimit}}</label>
+      </div>
+      <div class="col">
+        <label>{{company.quota}}</label>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [routerLink]="['/company-edit', company.id]">Edit</button>
+  </mat-card-actions>
+</mat-card>

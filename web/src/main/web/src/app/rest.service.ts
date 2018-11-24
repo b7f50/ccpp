@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Company} from "./company";
 
@@ -23,10 +23,16 @@ export class RestService {
         .set('sortOrder', sortOrder)
         .set('pageNumber', pageNumber.toString())
         .set('pageSize', pageSize.toString())
-    }).pipe(map(data =>  data));
+    }).pipe(map(data =>  <Company[]>data));
   }
 
   get(id: string) {
     return this.http.get(endpoint + '/companies/' + id);
+  }
+
+  save(company: Company) {
+    console.log("save got company: " + company.id)
+
+    this.http.post(endpoint + '/companies/', company).subscribe(status=> console.log(JSON.stringify(status)));
   }
 }

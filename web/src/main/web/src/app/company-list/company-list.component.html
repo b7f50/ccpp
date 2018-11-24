@@ -19,7 +19,7 @@
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/companies', row.id]"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/company-detail', row.id]"></tr>
   </table>
 
   <!--<mat-paginator #paginator-->

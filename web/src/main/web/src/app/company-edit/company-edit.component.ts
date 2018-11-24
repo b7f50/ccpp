@@ -12,7 +12,7 @@ export class CompanyEditComponent implements OnInit {
 
   company: Company;
 
-  constructor(public rest:RestService, private route: ActivatedRoute) { }
+  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.rest.get(this.route.snapshot.params['id']).subscribe((data: Company) => {
@@ -22,6 +22,15 @@ export class CompanyEditComponent implements OnInit {
   }
 
   onSubmit() {
-    alert('Thanks! ' +  this.company.expirationDate);
+    console.log("to be saved: ");
+    console.log(this.company);
+
+    if(confirm("Are you sure to edit " + this.company.name)) {
+      console.log('said yes');
+      this.rest.save(this.company);
+      this.router.navigate(['/companies'], {});
+    } else {
+      console.log("said no");
+    }
   }
 }
