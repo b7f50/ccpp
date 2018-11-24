@@ -5,10 +5,10 @@ import {Company} from "../company";
 
 @Component({
   selector: 'app-company-detail',
-  templateUrl: './company-detail.component.html',
-  styleUrls: ['./company-detail.component.css']
+  templateUrl: './company-edit.component.html',
+  styleUrls: ['./company-edit.component.css']
 })
-export class CompanyDetailComponent implements OnInit {
+export class CompanyEditComponent implements OnInit {
 
   company: Company;
 

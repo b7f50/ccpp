@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule, MatInputModule, MatCardModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatSelectModule, MatRadioModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule } from "@angular/material";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CompanyDetailComponent } from './company-detail/company-detail.component';
+import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,7 +18,7 @@ import { CompanyListComponent } from './company-list/company-list.component';
 const appRoutes: Routes = [
   {
     path: 'companies/:id',
-    component: CompanyDetailComponent,
+    component: CompanyEditComponent,
     data: { title: 'Company Detail' }
   },
   {
@@ -35,7 +35,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    CompanyDetailComponent,
+    CompanyEditComponent,
     CompanyListComponent
   ],
   imports: [
