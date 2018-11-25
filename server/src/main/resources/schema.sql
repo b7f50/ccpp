@@ -1,5 +1,6 @@
 CREATE TABLE company (
     id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
     deleted timestamp without time zone,
     active boolean DEFAULT true NOT NULL,
     name character varying(255) NOT NULL,

@@ -1,15 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CompanyListDataSource} from './company-list-datasource';
 import {RestService} from "../rest.service";
 import {fromEvent} from "rxjs";
-import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
   styleUrls: ['./company-list.component.css'],
 })
-export class CompanyListComponent implements OnInit {
+export class CompanyListComponent implements OnInit, AfterViewInit {
 
   dataSource: CompanyListDataSource;
 

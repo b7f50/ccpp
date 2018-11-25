@@ -17,6 +17,8 @@ public class CompanyController {
     @Autowired
     CompanyService companyService;
 
+    private static final long GIGA = 1000000000;
+
     @GetMapping("/companies")
     public List<Company> list(@RequestParam String name) {
         return companyService.find(name);
@@ -24,12 +26,16 @@ public class CompanyController {
 
     @GetMapping("/companies/{id}")
     public Company get(@PathVariable String id) {
-        return companyService.get(id);
+        log.warn("got id: " + id);
+        Company company = companyService.get(Long.parseLong(id));
+        company.setQuota(company.getQuota() / GIGA);
+        return company;
     }
 
     @PostMapping("/companies")
     public Company post(@RequestBody Company company) {
         log.warn("got company: " + company);
+        company.setQuota(company.getQuota() * GIGA);
         return companyService.save(company);
     }
 }
