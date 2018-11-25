@@ -15,14 +15,10 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(filter = '', sortOrder = 'asc',
-         pageNumber = 0, pageSize = 25):  Observable<Company[]> {
+  getAll(name = ''):  Observable<Company[]> {
     return this.http.get(endpoint + '/companies', {
       params: new HttpParams()
-        .set('filter', filter)
-        .set('sortOrder', sortOrder)
-        .set('pageNumber', pageNumber.toString())
-        .set('pageSize', pageSize.toString())
+        .set('name', name)
     }).pipe(map(data =>  <Company[]>data));
   }
 

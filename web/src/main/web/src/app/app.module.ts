@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule, MatInputModule, MatCardModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatSelectModule, MatRadioModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule } from "@angular/material";
+import { MatToolbarModule, MatInputModule, MatCardModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatSelectModule, MatRadioModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatInput } from "@angular/material";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyEditComponent } from './company-edit/company-edit.component';

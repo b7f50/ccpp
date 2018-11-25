@@ -18,8 +18,8 @@ public class CompanyController {
     CompanyService companyService;
 
     @GetMapping("/companies")
-    public List<Company> list(@RequestParam Integer pageSize, @RequestParam Integer pageNumber) {
-        return companyService.find(pageSize, pageNumber);
+    public List<Company> list(@RequestParam String name) {
+        return companyService.find(name);
     }
 
     @GetMapping("/companies/{id}")

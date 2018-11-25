@@ -24,14 +24,13 @@ export class CompanyListDataSource extends DataSource<Company> {
     this.loadingSubject.complete();
   }
 
-  loadCompanies(filter = '', sortDirection = 'asc', pageIndex = 0, pageSize = 25) {
+  loadCompanies(name = 'Company 1') {
 
     console.log('loadCompanies begin');
 
     this.loadingSubject.next(true);
 
-    this.restService.getAll(filter, sortDirection,
-      pageIndex, pageSize).pipe(
+    this.restService.getAll(name).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
     )
