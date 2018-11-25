@@ -16,7 +16,8 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDividerModule
 } from "@angular/material";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatRadioModule,
     MatProgressSpinnerModule,
+    MatDividerModule,
 
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
