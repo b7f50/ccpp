@@ -48,12 +48,12 @@ public class CompanyService {
         String sql = "SELECT C.ID, C.NAME, CPP.EXPIRATION_DATE, CPP.IDENTITY_LIMIT, CPP.QUOTA_LIMIT " +
                 "FROM COMPANY AS C " +
                 "INNER JOIN  COMPANY_PAYMENT_PACKAGE AS CPP ON C.COMPANY_PAYMENT_PACKAGE  = CPP.ID " +
-                "WHERE C.NAME LIKE ? " +
+                "WHERE LOWER(C.NAME) LIKE LOWER(?) " +
                 "ORDER BY C.CREATED DESC " +
                 "LIMIT 10 ";
 
         return jdbcTemplate.query(
-                sql, new Object[]{name + "%"},
+                sql, new Object[]{"%" + name + "%"},
                 (rs, rowNum) -> new Company(rs.getLong("ID"),
                         rs.getString("NAME"),
                         formatter.format(rs.getObject("EXPIRATION_DATE", LocalDateTime.class)),

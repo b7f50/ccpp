@@ -3,8 +3,9 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Company} from "./company";
+import {environment} from "../environments/environment";
 
-const endpoint = 'http://localhost:8080/api/';
+
 
 
 @Injectable({
@@ -13,22 +14,24 @@ const endpoint = 'http://localhost:8080/api/';
 
 export class RestService {
 
-  constructor(private http: HttpClient) { }
+  endpoint = environment.baseUrl;
+
+    constructor(private http: HttpClient) { }
 
   getAll(name = ''):  Observable<Company[]> {
-    return this.http.get(endpoint + '/companies', {
+    return this.http.get(this.endpoint + '/companies', {
       params: new HttpParams()
         .set('name', name)
     }).pipe(map(data =>  <Company[]>data));
   }
 
   get(id: string) {
-    return this.http.get(endpoint + '/companies/' + id);
+    return this.http.get(this.endpoint + '/companies/' + id);
   }
 
   save(company: Company) {
     console.log("save got company: " + company.id)
 
-    this.http.post(endpoint + '/companies/', company).subscribe(status=> console.log(JSON.stringify(status)));
+    this.http.post(this.endpoint + '/companies/', company).subscribe(status=> console.log(JSON.stringify(status)));
   }
 }
