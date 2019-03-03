@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CompanyListDataSource} from './company-list-datasource';
 import {RestService} from "../rest.service";
-import {fromEvent} from "rxjs";
-import {debounceTime, distinctUntilChanged, filter, tap} from "rxjs/operators";
+import {fromEvent, Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {Company} from "../company";
 
 @Component({
   selector: 'app-company-list',
@@ -13,7 +14,8 @@ export class CompanyListComponent implements OnInit, AfterViewInit {
 
   dataSource: CompanyListDataSource;
 
-  displayedColumns = ['id', 'name'];
+  companies: Observable<Company[]>;
+
 
   @ViewChild('input') input: ElementRef;
 
@@ -23,12 +25,13 @@ export class CompanyListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new CompanyListDataSource(this.restService);
     this.dataSource.loadCompanies("");
+    this.companies = this.dataSource.connect();
   }
 
   ngAfterViewInit() {
 
     // server-side search
-    fromEvent(this.input.nativeElement,'keyup')
+    fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),

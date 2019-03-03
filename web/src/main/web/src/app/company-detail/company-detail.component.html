@@ -1,27 +1,9 @@
-<mat-card class="company-card" *ngIf="company">
-  <mat-card-header>
-    <mat-card-title>Company Payment Package Details</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="row">
-      <div class="col">
-        <label>Name: {{company.name}}</label>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="row">
-      <div class="col">
-        <label>Expire: {{company.expirationDate}}</label>
-      </div>
-      <div class="col">
-        <label>Users: {{company.usersLimit}}</label>
-      </div>
-      <div class="col">
-        <label>Quota: {{company.quota}}</label>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" [routerLink]="['/company-edit', company.id]">Edit</button>
-  </mat-card-actions>
-</mat-card>
+<div *ngIf="company">
+  <h3>{{company.name}}</h3>
+  <ul>
+    <li>Expire: {{company.expirationDate}}</li>
+    <li>Users: {{company.usersLimit}}</li>
+    <li>Quota: {{company.quota}}GB</li>
+  </ul>
+  <button routerLink="/company-edit/{{company.id}}">Edit</button>
+</div>

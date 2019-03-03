@@ -4,21 +4,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDatepickerModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSortModule,
-  MatTableModule,
-  MatToolbarModule,
-  MatDividerModule
-} from "@angular/material";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -66,22 +51,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
 
-    MatInputModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatProgressSpinnerModule,
-    MatDividerModule,
-
     RouterModule.forRoot(appRoutes),
-    HttpClientModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

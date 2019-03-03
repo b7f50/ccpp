@@ -1,38 +1,7 @@
-<form (ngSubmit)="onSubmit()">
-  <mat-card class="company-card" *ngIf="company">
-    <mat-card-header>
-      <mat-card-title>Edit Company Payment Package details</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <label>{{company.name}}</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput name="company.expirationDate" [matDatepicker]="expirationDatePicker" placeholder="Expiration date" [(ngModel)]="company.expirationDate" required>
-            <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #expirationDatePicker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field>
-            <input matInput name="company.usersLimit" type="number" placeholder="Users Limit"  [(ngModel)]="company.usersLimit" required >
-            <mat-error>This field is required</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field>
-            <input matInput name="company.quota" type="number" placeholder="Quota"  [(ngModel)]="company.quota" required >
-            <mat-error>This field is required</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
+<form (ngSubmit)="onSubmit()" *ngIf="company">
+  <h3>Edit Company {{company.name}}</h3>
+  <label>Exp: <input type="text" [(ngModel)]="company.expirationDate" name="expirationDate"></label><br />
+  <label>Lim: <input type="number" [(ngModel)]="company.usersLimit" name="usersLimit"></label><br />
+  <label>Quo: <input type="number" [(ngModel)]="company.quota" name="quota"></label><br />
+  <button type="submit">Submit</button>
 </form>

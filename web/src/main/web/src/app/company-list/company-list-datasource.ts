@@ -1,10 +1,9 @@
-import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {catchError, finalize} from 'rxjs/operators';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Company} from "../company";
 import {RestService} from "../rest.service";
 
-export class CompanyListDataSource extends DataSource<Company> {
+export class CompanyListDataSource {
 
   private companiesSubject = new BehaviorSubject<Company[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -12,16 +11,10 @@ export class CompanyListDataSource extends DataSource<Company> {
   public loading$ = this.loadingSubject.asObservable();
 
   constructor(private restService: RestService) {
-    super();
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Company[]> {
+  connect(): Observable<Company[]> {
     return this.companiesSubject.asObservable();
-  }
-
-  disconnect(collectionViewer: CollectionViewer): void {
-    this.companiesSubject.complete();
-    this.loadingSubject.complete();
   }
 
   loadCompanies(name = 'Company 1') {
